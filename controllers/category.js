@@ -1,19 +1,13 @@
-module.exports.getAll = function(res, req) {
-  
-}
+module.exports.getAll = function (req, res) {
+  res.json({
+    message: 'categories'
+  });
+};
 
-module.exports.getById = function(res, req) {
-  
-}
+module.exports.getById = function (req, res) {};
 
-module.exports.delete = function(res, req) {
-  
-}
+module.exports.delete = function (req, res) {};
 
-module.exports.create = function(res, req) {
-  
-}
+module.exports.create = function (req, res) {};
 
-module.exports.update = function(res, req) {
-  
-}
+module.exports.update = function (req, res) {};
