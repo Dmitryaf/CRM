@@ -33,6 +33,35 @@ module.exports.delete = async function (req, res) {
   }
 };
 
-module.exports.create = function (req, res) {};
+module.exports.create = async function (req, res) {
+  const category = new Category({
+    name: req.body.name,
+    user: req.user.id,
+    imgSrc: req.file ? req.file.path : ''
+  });
 
-module.exports.update = function (req, res) {};
+  try {
+    await category.save();
+    res.status(201).json(category);
+  } catch (error) {
+    errorHandler(res, error);
+  }
+};
+
+module.exports.update = async function (req, res) {
+  const updated = {};
+
+  if (req.file) {
+    updated.imgSrc = req.file.path;
+  }
+
+  try {
+    const category = await Category.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: updated },
+      { new: true }
+    );
+  } catch (error) {
+    errorHandler(res, error);
+  }
+};
