@@ -1,4 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from './shared/classes/token.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,9 +26,12 @@ import { RegisterPageComponent } from './register-page/register-page.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
-
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    multi: true,
+    useClass: TokenInterceptor
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
