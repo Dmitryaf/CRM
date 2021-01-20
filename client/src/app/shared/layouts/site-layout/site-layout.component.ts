@@ -13,10 +13,10 @@ export class SiteLayoutComponent implements AfterViewInit {
 
   links: { url: string, name: string }[] = [
     { url: '/overview', name: 'Обзор' },
-    { url: '/analityc', name: 'Аналитика' },
+    { url: '/analitycs', name: 'Аналитика' },
     { url: '/history', name: 'История' },
     { url: '/order', name: 'Добавить заказ' },
-    { url: '/category', name: 'Категории' }
+    { url: '/categories', name: 'Категории' }
   ]
 
   constructor(
