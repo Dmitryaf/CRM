@@ -8,14 +8,24 @@
   </button>
 </div>
 
-<div class="row" *ngIf="!isLoading">
+<div class="row" *ngIf="categories$ | async as categories; else loader">
   <div class="col s12">
-    <div class="collection">
-      <a *ngFor="let category of categories" href="#!" class="collection-item">
+    <div class="collection" *ngIf="categories.length !== 0; else empty">
+      <a
+        *ngFor="let category of categories"
+        class="collection-item"
+        [routerLink]="['/categories', category._id]"
+      >
         {{ category.name }}
       </a>
     </div>
   </div>
 </div>
 
-<app-loader *ngIf="isLoading"></app-loader>
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template #empty>
+  <p class="center">Категории отсутствуют</p>
+</ng-template>
