@@ -16,7 +16,7 @@ module.exports.getAll = async function (req, res) {
 module.exports.getById = async function (req, res) {
   try {
     const category = await Category.findById(req.params.id);
-    res.status(200).json({ category });
+    res.status(200).json(category);
   } catch (error) {
     errorHandler(res, error);
   }
