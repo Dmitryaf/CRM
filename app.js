@@ -5,7 +5,7 @@ const passport = require('passport');
 
 const authRoutes = require('./routes/auth');
 const analyticsRoutes = require('./routes/analytics');
-const categoryRoutes = require('./routes/category');
+const categoryRoutes = require('./routes/categories');
 const orderRoutes = require('./routes/order');
 const positionRoutes = require('./routes/position');
 const keys = require('./config/keys');
@@ -35,7 +35,7 @@ app.use(require('cors')());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/analytics', analyticsRoutes);
-app.use('/api/category', categoryRoutes);
+app.use('/api/categories', categoryRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/position', positionRoutes);
 
