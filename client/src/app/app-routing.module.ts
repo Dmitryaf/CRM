@@ -1,3 +1,5 @@
+import { OrderPositionsComponent } from './order-page/order-positions/order-positions.component';
+import { OrderCategoriesComponent } from './order-page/order-categories/order-categories.component';
 import { CategoriesFormComponent } from './categories-page/categories-form/categories-form.component';
 import { CategoriesPageComponent } from './categories-page/categories-page.component';
 import { OrderPageComponent } from './order-page/order-page.component';
@@ -30,7 +32,12 @@ const routes: Routes = [
       { path: 'overview', component: OverviewPageComponent },
       { path: 'analitycs', component: AnalyticsPageComponent },
       { path: 'history', component: HistoryPageComponent },
-      { path: 'order', component: OrderPageComponent },
+      {
+        path: 'order', component: OrderPageComponent, children: [
+          { path: '', component: OrderCategoriesComponent },
+          { path: ':id', component: OrderPositionsComponent }
+        ]
+      },
       { path: 'categories', component: CategoriesPageComponent },
       { path: 'categories/new', component: CategoriesFormComponent },
       { path: 'categories/:id', component: CategoriesFormComponent }

@@ -4,7 +4,7 @@ const errorHandler = require('../utils/errorHandler');
 module.exports.getByCategoryId = async function (req, res) {
   try {
     const positions = await Position.find({
-      id: req.params.categoryId,
+      category: req.params.categoryId,
       user: req.user.id
     });
     res.status(200).json(positions);
@@ -17,7 +17,7 @@ module.exports.create = async function (req, res) {
   try {
     const position = await new Position({
       name: req.body.name,
-      const: req.body.cost,
+      cost: req.body.cost,
       category: req.body.category,
       user: req.user.id
     }).save();
@@ -44,7 +44,7 @@ module.exports.delete = async function (req, res) {
   try {
     await Position.remove({ _id: req.params.id });
     res.status(200).json({
-      message: 'Позиция была удалена'
+      message: 'Позиция удалена'
     });
   } catch (error) {
     errorHandler(res, error);
