@@ -16,7 +16,8 @@ export interface Message {
 export interface Position {
   name: string;
   cost: number;
-  user?: string;
   category: string;
+  user?: string;
   _id?: string;
+  quantity?: number;
 }
