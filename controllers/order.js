@@ -1,7 +1,7 @@
 const Order = require('../models/Order');
 const errorHandler = require('../utils/errorHandler');
 
-module.exports.getAll = async function (res, req) {
+module.exports.getAll = async function (req, res) {
   const query = {};
 
   // Дата старта
@@ -35,7 +35,7 @@ module.exports.getAll = async function (res, req) {
   }
 };
 
-module.exports.create = async function (res, req) {
+module.exports.create = async function (req, res) {
   try {
     const lastOrder = await Order.findOne({ user: req.user.id }).sort({
       data: -1

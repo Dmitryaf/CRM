@@ -16,7 +16,23 @@ export interface Message {
 export interface Position {
   name: string;
   cost: number;
-  user?: string;
   category: string;
+  user?: string;
+  _id?: string;
+  quantity?: number;
+}
+
+export interface Order {
+  date?: Date;
+  order?: number;
+  user?: string;
+  _id?: string;
+  list: any[];
+}
+
+export interface OrderPosition {
+  name: string;
+  cost: number;
+  quantity: number;
   _id?: string;
 }
