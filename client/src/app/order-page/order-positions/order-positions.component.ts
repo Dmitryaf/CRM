@@ -1,4 +1,5 @@
-import { OrderService } from './../../shared/services/order.service';
+import { MaterialService } from './../../shared/classes/material.service';
+import { OrderService } from '../../shared/services/order.service';
 import { map, switchMap } from 'rxjs/internal/operators';
 import { Position } from './../../shared/interfaces';
 import { Observable } from 'rxjs';
@@ -36,7 +37,8 @@ export class OrderPositionsComponent implements OnInit {
     );
   }
 
-  addToOrder(position: Position) {
+  addToOrder(position: Position): void {
+    MaterialService.toast(`Добавленно x${position.quantity} ${position.name}`)
     this.orderService.add(position);
   }
 
