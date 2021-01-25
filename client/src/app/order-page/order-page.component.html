@@ -8,6 +8,7 @@
     <button
         (click)="openModal()"
         class="waves-effect btn grey darken-1"
+        [disabled]="orderService.list.length === 0"
     >
         Завершить
     </button>
@@ -32,37 +33,25 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>Alvin</td>
-                    <td>3</td>
-                    <td>$0.87</td>
+                <tr *ngFor="let item of orderService.list">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.cost * item.quantity}}</td>
                     <td>
-                        <i class="material-icons pointer">delete</i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Alan</td>
-                    <td>1</td>
-                    <td>$3.76</td>
-                    <td>
-                        <i class="material-icons pointer">delete</i>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>Jonathan</td>
-                    <td>2</td>
-                    <td>$7.00</td>
-                    <td>
-                        <i class="material-icons pointer">delete</i>
+                        <i
+                            (click)="removePosition(item)"
+                            class="material-icons pointer"
+                        >
+                            delete
+                        </i>
                     </td>
                 </tr>
             </tbody>
         </table>
         <div class="order-summary">
             <p>
-                Общая стоимость
-                <strong>22 231 руб.</strong>
+                Общая стоимость:
+                <strong>{{ orderService.price }}</strong>
             </p>
         </div>
     </div>
@@ -78,6 +67,7 @@
             (click)="onSubmit()"
             type="submit"
             class="modal-action btn waves-effect"
+            [disabled]="orderService.list.length === 0"
         >
             Подтвердить
         </button>
