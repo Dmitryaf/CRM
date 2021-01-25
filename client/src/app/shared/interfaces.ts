@@ -21,3 +21,18 @@ export interface Position {
   _id?: string;
   quantity?: number;
 }
+
+export interface Order {
+  date?: Date;
+  order?: number;
+  user?: string;
+  _id?: string;
+  list: any[];
+}
+
+export interface OrderPosition {
+  name: string;
+  cost: number;
+  quantity: number;
+  _id?: string;
+}
