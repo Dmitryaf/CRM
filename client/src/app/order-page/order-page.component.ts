@@ -1,4 +1,5 @@
-import { OrderService } from './../shared/services/order.service';
+import { OrderPosition } from './../shared/interfaces';
+import { OrderService } from '../shared/services/order.service';
 import { MaterialService, MaterialInstance } from './../shared/classes/material.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
@@ -16,7 +17,7 @@ export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private router: Router,
-    private orderService: OrderService
+    public orderService: OrderService
   ) { }
 
   ngOnInit(): void {
@@ -28,15 +29,20 @@ export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
     })
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.modal = MaterialService.initModal(this.modalRef);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.modal.destroy();
   }
 
-  openModal() {
+  removePosition(orderPosition: OrderPosition): void {
+    MaterialService.toast(`${orderPosition.name} удалён из списка заказов`);
+    this.orderService.remove(orderPosition);
+  }
+
+  openModal(): void {
     this.modal.open();
   }
 
