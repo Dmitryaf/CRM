@@ -60,6 +60,7 @@
             (click)="closeModal()"
             type="button"
             class="modal-action waves-effect waves-black btn-flat"
+            [disabled]="loading"
         >
             Отмена
         </button>
@@ -67,7 +68,7 @@
             (click)="onSubmit()"
             type="submit"
             class="modal-action btn waves-effect"
-            [disabled]="orderService.list.length === 0"
+            [disabled]="orderService.list.length === 0 || loading"
         >
             Подтвердить
         </button>
