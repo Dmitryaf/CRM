@@ -18,7 +18,7 @@ export class HistoryListComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.modal.destroy();
+
   }
 
   ngOnDestroy(): void {
