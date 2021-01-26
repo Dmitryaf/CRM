@@ -12,15 +12,19 @@ export class MaterialService {
     M.toast({ html: message });
   }
 
-  static initFloatingButton(ref: ElementRef) {
+  static initFloatingButton(ref: ElementRef): void {
     M.FloatingActionButton.init(ref.nativeElement);
   }
 
-  static updateTextInput() {
+  static updateTextInput(): void {
     M.updateTextFields();
   }
 
   static initModal(ref: ElementRef): MaterialInstance {
     return M.Modal.init(ref.nativeElement);
+  }
+
+  static initTooltip(ref: ElementRef): MaterialInstance {
+    return M.Tooltip.init(ref.nativeElement);
   }
 }
