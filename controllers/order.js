@@ -2,7 +2,9 @@ const Order = require('../models/Order');
 const errorHandler = require('../utils/errorHandler');
 
 module.exports.getAll = async function (req, res) {
-  const query = {};
+  const query = {
+    user: req.user.id
+  };
 
   // Дата старта
   if (req.query.start) {
@@ -24,12 +26,12 @@ module.exports.getAll = async function (req, res) {
   }
 
   try {
-    const orders = Order.find(query)
+    const orders = await Order.find(query)
       .sort({ date: -1 })
       .skip(+req.query.offset)
       .limit(+req.query.limit);
 
-    res.status(200).json(order);
+    res.status(200).json(orders);
   } catch (error) {
     errorHandler(res, error);
   }
@@ -38,7 +40,7 @@ module.exports.getAll = async function (req, res) {
 module.exports.create = async function (req, res) {
   try {
     const lastOrder = await Order.findOne({ user: req.user.id }).sort({
-      data: -1
+      date: -1
     });
     const maxOrder = lastOrder ? lastOrder.order : 0;
 
