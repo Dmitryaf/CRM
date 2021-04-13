@@ -2,36 +2,41 @@ const Order = require('../models/Order');
 const errorHandler = require('../utils/errorHandler');
 
 module.exports.getAll = async function (req, res) {
-  const query = {};
+  const query = {
+    user: req.user.id
+  }
 
   // Дата старта
   if (req.query.start) {
     query.date = {
+      // Больше или равно
       $gte: req.query.start
-    };
+    }
   }
 
   if (req.query.end) {
     if (!query.date) {
-      query.data = {};
+      query.date = {}
     }
 
-    query.date['$lte'] = req.query.end;
+    query.date['$lte'] = req.query.end
   }
 
   if (req.query.order) {
-    query.order = +req.query.order;
+    query.order = +req.query.order
   }
 
   try {
-    const orders = Order.find(query)
-      .sort({ date: -1 })
+    const orders = await Order
+      .find(query)
+      .sort({date: -1})
       .skip(+req.query.offset)
-      .limit(+req.query.limit);
+      .limit(+req.query.limit)
 
-    res.status(200).json(order);
-  } catch (error) {
-    errorHandler(res, error);
+    res.status(200).json(orders)
+
+  } catch (e) {
+    errorHandler(res, e)
   }
 };
 
