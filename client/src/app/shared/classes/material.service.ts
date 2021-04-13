@@ -3,12 +3,12 @@ import { ElementRef } from '@angular/core';
 declare var M;
 
 export interface MaterialInstance {
-  open?(): void;
-  close?(): void;
-  destroy?(): void;
+  open?();
+  close?();
+  destroy?();
 }
 export class MaterialService {
-  static toast(message: string): void {
+  static toast(message: string) {
     M.toast({ html: message });
   }
 

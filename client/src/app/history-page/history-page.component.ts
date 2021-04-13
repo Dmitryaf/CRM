@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { MaterialInstance, MaterialService } from '../shared/classes/material.service'
 
 @Component({
   selector: 'app-history-page',
@@ -9,7 +10,7 @@ export class HistoryPageComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }
