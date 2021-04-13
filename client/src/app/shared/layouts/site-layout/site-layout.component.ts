@@ -12,8 +12,6 @@ export class SiteLayoutComponent implements AfterViewInit {
   @ViewChild('floating') floatingRef: ElementRef;
 
   links: { url: string, name: string }[] = [
-    { url: '/overview', name: 'Обзор' },
-    { url: '/analitycs', name: 'Аналитика' },
     { url: '/history', name: 'История' },
     { url: '/order', name: 'Добавить заказ' },
     { url: '/categories', name: 'Категории' }
